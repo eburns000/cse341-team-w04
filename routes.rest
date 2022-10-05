@@ -1,0 +1,29 @@
+// LOCALHOST
+###
+GET http://localhost:8080/temples
+###
+GET http://localhost:8080/temples/<enterIdHere>
+###
+POST http://localhost:8080/temples HTTP/1.1
+content-type: application/json
+
+{
+  "temple_id": 267,
+  "additionalInfo": false,
+  "name": "Cuernavaca Mexico Temple",
+  "location": "Location Not Available",
+  "dedicated": "Announced"
+}
+}
+###
+DELETE http://localhost:8080/temples/<enterIdHere>
+###
+PUT http://localhost:8080/temples/<enterIdHere>
+content-type: application/json
+
+{
+  "location": "Cuernavaca, Mexico"
+}
+
+
+

@@ -1,8 +1,8 @@
 const db = require('../models');
 const Temple = db.temples;
 
-const apiKey =
-  'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68Xwaj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N';
+// const apiKey = process.env.APIKEY; // this is my pesonal key
+const apiKey = 'Ezl0961tEpx2UxTZ5v2uKFK91qdNAr5npRlMT1zLcE3Mg68XwZj3N8Dyp1R8IvFenrVwHRllOUxF0Og00l0m9NcaYMtH6Bpgdv7N';
 
 exports.create = (req, res) => {
   // Validate request
@@ -33,7 +33,7 @@ exports.create = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-  console.log(req.header('apiKey'));
+  console.log(`Find all was triggred ${req.header('apiKey')}`);
   if (req.header('apiKey') === apiKey) {
     Temple.find(
       {},
@@ -48,12 +48,14 @@ exports.findAll = (req, res) => {
     )
       .then((data) => {
         res.send(data);
+        console.log("Attempted to send data");
       })
       .catch((err) => {
         res.status(500).send({
           message:
             err.message || 'Some error occurred while retrieving temples.',
         });
+        console.log("Error 1 - when getting all temples");
       });
   } else {
     res.send('Invalid apiKey, please read the documentation.');
